@@ -1,4 +1,14 @@
 -----------------------------------------------------------------------------------------------------------------------------------------------------------
 Day 1
-  - 19 	EMVA-007-M 	rOVUm5ZPEn9ZwBQ 	10.50.22.0
+  - 19 	EMVA-007-M 	rOVUm5ZPEn9ZwBQ 	10.50.23.5 (windows)/10.50.31.142(linux)
+  - https://sec.cybbh.io/public/security/latest/index.html
+  - /usr/share/nmap/scripts
+  - nmap [ip] [options] --script [script name]
+  - Pen Testing:
+    - 
+  - Scanning and Recon:
+    - 
+  - Vulnerability and Exploitation Research:
+    - Initial Access:
+      - 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------
