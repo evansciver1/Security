@@ -13,3 +13,49 @@ Day 1
     - Initial Access:
       - 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------
+Day 2
+  - Web Exploitation Part 1:
+    - HTTP methods:
+      - GET = retrieves information
+      - POST = sends information
+      - HEAD = requests headers 
+      - PUT = replaces all representations of a resource with the uploaded content
+      - 10X == Informational
+      - 2XX == Success
+      - 30X == Redirection
+      - 4XX == Client Error
+      - 5XX == Server Error
+      - Robots.txt = instructions for web crawlers    
+      - http-enum script: nmap --script http-enum [ip address]
+    - Cross-Site Scripting (XSS):
+      - Insertion of arbitrary code into a webpage that executes untrusted code on a victims browser
+      - Unsanatized GET, POST, and PUT methods allow JS to be placed on websites
+      - Reflected XSS:
+        - Most common form
+        - Puts code in the URL
+        - Delivered through intermediate media
+      - Stored XSS:
+        - Resides on vulnerable site
+        - Only requires user to visit page
+      - Directory Traversal
+        - Ability to read/execute outside web server directory
+        - Uses relative paths to manipulate
+        - ../../../../etc/passwd
+        - SSI injection code <!DOCTYPE html>
+          <html>
+          <body>
+          <h1>A Web Page</h1>
+          <p id="demo">A Paragraph</p>
+          <button type="button" onclick="myFunction()">Try it</button>
+          <script>
+          function myFunction() {
+             document.getElementById("demo").innerHTML = "Paragraph changed.";
+          }
+          </script>
+          </body>
+          </html>
+      - Command Injection:
+        - Application on the server is vulnerable, allowing execution of arbitrary commands
+        - User input is not validated; common example is a SOHO router with a web page to allow ping
+        - run the following to chain/stack our arbitrary command: ; cat /etc/passwd
+        
