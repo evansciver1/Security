@@ -6,13 +6,6 @@ Day 1
   - /usr/share/nmap/scripts
   - nmap [ip] [options] --script [script name]
   - XFREERDP Syntax: xfreerdp /v:10.50.x.x /u:student /p:password /size:1920x1000 +clipboard
-  - Pen Testing:
-    - 
-  - Scanning and Recon:
-    - 
-  - Vulnerability and Exploitation Research:
-    - Initial Access:
-      - 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------
 Day 2
 -----------------------------------------------------------------------------------------------------------------------------------------------------------
