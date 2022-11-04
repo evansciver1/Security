@@ -1,5 +1,6 @@
 -----------------------------------------------------------------------------------------------------------------------------------------------------------
 Day 1
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
   - 19 	EMVA-007-M 	rOVUm5ZPEn9ZwBQ 	10.50.23.5 (windows)/10.50.31.142(linux)
   - https://sec.cybbh.io/public/security/latest/index.html
   - /usr/share/nmap/scripts
@@ -14,6 +15,7 @@ Day 1
       - 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------
 Day 2
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
   - Web Exploitation Part 1:
     - HTTP methods:
       - GET = retrieves information
@@ -58,4 +60,48 @@ Day 2
         - Application on the server is vulnerable, allowing execution of arbitrary commands
         - User input is not validated; common example is a SOHO router with a web page to allow ping
         - run the following to chain/stack our arbitrary command: ; cat /etc/passwd
-        
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+Day 3
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+  - SQL:
+    - mysql opens sql 
+    - select * from session.car; - shows everything from that session
+    - select * from union select [table], [columns], 1, 2
+    - SELECT - Extracts data from a database
+    - UNION - Used to combine the result-set of two or more SELECT statements
+    - USE - Selects the DB to use
+    - UPDATE - Updates data in a database
+    - DELETE - Deletes data from a database
+    - INSERT INTO - Inserts new data into a database
+    - CREATE DATABASE - Creates a new database
+    - ALTER DATABASE - Modifies a database
+    - CREATE TABLE - Creates a new table
+    - ALTER TABLE - Modifies a table
+    - DROP TABLE - Deletes a table
+    - CREATE INDEX - Creates an index (search key)
+    - DROP INDEX - Deletes an index
+    - https://www.w3schools.com/SQL/sql_syntax.asp
+    - Operator Condition SQL Example:
+       - =, !=, < <=, >, >= 	Standard numerical operators 	col_name != 4
+       - BETWEEN … AND … 	Number is within range of two values (inclusive) 	col_name BETWEEN 1.5 AND 10.5
+       - NOT BETWEEN … AND … 	Number is not within range of two values (inclusive) 	col_name NOT BETWEEN 1 AND 10
+       - IN (…) 	Number exists in a list 	col_name IN (2, 4, 6)
+       - NOT IN (…) 	Number does not exist in a list 	col_name NOT IN (1, 3, 5)
+    - Is information_schema Database available?
+    - GET Request versus POST Request HTTP methods
+    - Unsanitized: input fields can be found using a Single Quote ⇒ '
+    - Sanitized: input fields are checked for items that might harm the database (Items are removed, escaped, or turned into a single string)
+    - Validation: checks inputs to ensure it meets a criteria (String doesn’t contain ')
+    - Server-Side Query Processing:
+      - User enters JohnDoe243 in the name form field and pass1234$ in the pass form field.
+      Before Input:
+        - SELECT id FROM users WHERE name=‘$name’ AND pass=‘$pass’;
+      After Input:
+        - SELECT id FROM users WHERE name=‘JohnDoe243’ AND pass=‘pass1234’;
+      Injecting Your Statements:
+        - User enters tom' OR 1='1 in the name and pass fields.
+        - Truth Statement: tom' OR 1='1
+        - Server Query Appears as:
+          - SELECT id FROM users WHERE name=‘tom' OR 1='1’ AND pass=‘tom' OR 1='1’
+        - Doing this in the URL using a get method can show username info
+        -
