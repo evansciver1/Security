@@ -133,4 +133,7 @@ Day 6
       - info <...>  #   Supply info for specific stack areas
       - x/256c $<REGISTER>  #   Read characters from specific register
       - break <address>  #   Establish a break point
-    - 
+    - ./program <<< $(python exploit.py) - if asked for user input
+    - ./program $(python exploit.py) takes buffer as argument
+    - gdb-ped: run <<< $(python exploit.py)
+    - gdp-ped: run $(python exploit.py)
