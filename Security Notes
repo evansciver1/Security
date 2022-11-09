@@ -128,8 +128,25 @@ Day 5
 Day 6
 -----------------------------------------------------------------------------------------------------------------------------------------------------------
   - Exploit Development
+    - A general protection fault can occur when stomping on kernel space virtual memory. On 64-bit systems, user-space virtual memory is allocated and locked using the lower 47 bits of the address; therefore, it is limited to the address range of 0x0 to 0x7fffffffffff. 
+      If the instruction pointer (IP) is greater than 0x7fffffffffff, you will get a general protection fault, and your buffer overflow attempt will fail. 
+    - https://wiremask.eu/tools/: buffer overflow pattern
+    - When in Debugger: !mona modules and !mona jmp -r esp -m "[.dll you're looking for]" will show jump statements 
+    - msfvenom - [system/exploit] lhost=[your ip] lport=[target port] -b "\x00\xff\x0A\x0D" -f python
+      1: Analyze
+        - Run the file command: "file [file name]" 
+          - Identify: OS and architecture
+          - Statically/dynamically linked
+          - Debugging info (stripped/not stripped)
+          - BuildID (identifier added during the linking process)
+        - Run the strings command: "strings [file name]"
+          - Embedded help
+          - Error messages
+          - Other string items
+          - Can also expose packed binaries
     - GDB common commands:
       - disass <FUNCTION>   #   Disassemble portion of the program
+      - Using the command 'pdisass' instead of 'disass' will have the peda plugin highlight known vulnerable functions with red text. 
       - info <...>  #   Supply info for specific stack areas
       - x/256c $<REGISTER>  #   Read characters from specific register
       - break <address>  #   Establish a break point
