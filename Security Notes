@@ -185,6 +185,7 @@ Day 7
         - sudo -l 
           - if you see a program in sudo -l check it out to do privelege escalation
         - cat /etc/passwd
+        - cat /etc/hosts - DNS information
     - Demo - Windows (port 3389 - RDP will always be open):
       - First Commands (Command Line):
         - whoami
@@ -199,3 +200,5 @@ Day 7
           - C:\Public and System32 
         - tasklist /svc
           - the Services program will show services in a GUI format
+        - nslookup
+        - C:\Windows\System32\Drivers\etc\hosts - local DNS information
