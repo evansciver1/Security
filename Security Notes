@@ -202,3 +202,25 @@ Day 7
           - the Services program will show services in a GUI format
         - nslookup
         - C:\Windows\System32\Drivers\etc\hosts - local DNS information
+    - Control Sockets:
+      - first thing you need is a file to hold your master sockets - use .ssh
+      - mkdir cm (control masters)
+      - cd into the director - /.ssh/cm
+      - ssh -M (master) -S (slave) ~/.ssh/cm/[whatever name you want - likely the hostname of the target box] [user]@[IP address]
+      - sshing succesfully will create a socket in the /cm directory named whatever you named the socket as
+      - ssh -o "ControlPath=~/.ssh/cm/[socket name]" [Placeholder that ssh needs; anything can go here from the letter a to the socket name]
+      - don't close the first window; it will close the socket
+      - ssh -M (master) -S (slave) ~/.ssh/cm/[whatever name you want - likely the hostname of the target box] -o "ControlPersist=10m" [user]@[IP address]
+      - the above command makes the socket stay open if nothing is connected to it, even if you close the original window
+      - ssh -O [big O] forward [specifies port forwarding] -L [random high port]:[target IP]:[ssh port] -S [socket] ~/.ssh/cm/[specific socket] T1
+      - connecting to the local port is the same as normal - ssh [username]@[localhost/0.0.0.0] -p [RHP] 
+      - establishing a new tunnel uses the same syntax as before; it will still use the same Master Socket but take you to a different target
+      - ssh -M -S ~/.ssh/cm/[New Socket Name] -o "ControlPersist=10m" -p [target port] [username]@[localhost/0.0.0.0] 
+      - the above command sets up a new mastersocket on your second target to continue going through the network
+      - ssh -o "ControlPath=~/.ssh/cm/[new socket]" [placeholder character] will take you to the new target ip through the new socket
+      - scp -P [socket local RHP] [usn]@[localhost/0.0.0.0]:/file/destination/path /your/local/directory/and_file_name.txt
+      - NUCLEAR LAUNCH CODES - 8675409 (POSSIBLE FLAG ^_^)
+      - scp -o "ControlPath=~/.ssh/cm/[Master Socket]" [placeholder]:/directory/you_want_to_grab_from/and_file.txt /your/local/home/directory.txt
+      - above command: scping using master socket options
+      - ssh -O [big O] cancel [specifies port forwarding] -L [random high port]:[target IP]:[ssh port] -S [socket] ~/.ssh/cm/[specific socket] T1       
+      - above command closes open sockets - same as opening them except change "forward" to "cancel"
