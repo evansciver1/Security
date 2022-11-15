@@ -224,3 +224,14 @@ Day 7
       - above command: scping using master socket options
       - ssh -O [big O] cancel [specifies port forwarding] -L [random high port]:[target IP]:[ssh port] -S [socket] ~/.ssh/cm/[specific socket] T1       
       - above command closes open sockets - same as opening them except change "forward" to "cancel"
+      - To automate connecting to grey host/jump box - THIS COMMAND WILL AUTOMATICALLY CREATE A MASTER SOCKET  NAMED WHAT YOU SPECIFY IN THE .SSH DIRECTORY:
+        - touch /home/student/.ssh/config
+        - vim /home/student/.ssh/config
+        ------Script Lines------
+          Host [JB hostname]
+             HostName [IP]
+             User student
+             ControlPath ~/.ssh/cm/[master socket path]
+             ControlPersist 10m
+             ControlMaster auto
+        ------------------------
