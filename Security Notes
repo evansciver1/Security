@@ -154,3 +154,48 @@ Day 6
     - ./program $(python exploit.py) takes buffer as argument
     - gdb-ped: run <<< $(python exploit.py)
     - gdp-ped: run $(python exploit.py)
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+Day 7
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+  - Post Exploitation
+    - Host Enumeration:
+      - User Enumeration:
+        - Windows - net user
+        - Linux - cat /etc/passwd
+      - Process Enumeration:
+        - Windows - tasklist /v
+        - Linux - ps -elf 
+      - Service Enumeration:
+        - Windows - tasklist /service
+        - Linux - chkconfig / systemctl --type=service
+      - Network Connection Enumeration
+        - Windows - ipconfig /all
+        - Linux - ipconfig -a / ip a
+      - Data Exfiltration
+        -  ssh <user>@<host> | tee - tee both writes contents of output to stdout and to a file
+    - Demo - Linux:
+      - First Commands:
+        - w, who, whoami
+        - hostname
+        - ip a
+        - ps -elf
+          - Check any running scripts if they look suspicious to see what they're actually doing
+        - uname -a
+        - netstat -antp / ss -ntlp
+        - sudo -l 
+          - if you see a program in sudo -l check it out to do privelege escalation
+        - cat /etc/passwd
+    - Demo - Windows (port 3389 - RDP will always be open):
+      - First Commands (Command Line):
+        - whoami
+        - hostname
+        - ipconfig /all
+        - netstat /anot
+        - net user
+        - net localgroup
+          - If attempting to make a privileged user, make sure you add them to the administrators group AND remote desktop users group so you can RDP as them
+        - tasklist
+        - look at the file system through the GUI
+          - C:\Public and System32 
+        - tasklist /svc
+          - the Services program will show services in a GUI format
