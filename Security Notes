@@ -253,4 +253,30 @@ Day 8
         - Medium
         - high 
         - system
+    - Scheduled Tasks
+      - schtasks /query /fo LIST /v
+    - Demos:
+      - schtasks /query /fo LIST /v
+      - If you know what you're looking for pipe the command to find 
+      - Task Scheduler is much more helpful
+      - When finding a suspicious task in Task Scheduler, check the location of the scheduled task to see where it's being run from and if it can be manipulated
+      - ProcMon can help determine what .dlls a task is looking for, as well as whether or not a task is vulnerable to hijacking
+      - Put task/.exe in the procmon filter to see where and what the task is calling for
+      - Execute the file as well to monitor it in real time
+      - Filters:
+        - Process Name Contains: [task]
+        - Path contains .dll
+        - Result contains NAME NOT FOUND
+      - msfvenom can create malicious binaries
+      - Compiling .dll: msfvenom -p windows/exec CMD='cmd.exe /C "command you want to run" > C:\Users\[user to save to]\Desktop\[.dll file name].txt 
+        -b "\x00" -f dll > [file name where you want to save it on the linux box] 
+      - SCP from Windows grabbing file from Linux
+      - Use the Services process to check active/scheduled services
+      - Filter on description to see user made services
+      - Check the properties of the service to see what it's looking for when it's trying to run
+      - Compiling binary: msfvenom -p windows/exec CMD='cmd.exe' /C "whoami/[command you want to be run]" > C:\Users\[user]\Desktop\[file name] 
+        -b "\x00" -f exe > [file name].exe
+      - If you don't have permissions to start a service, reboot the machine to automatically fire them on startup
+      - Check Regedit if you haven't been able to find a specific binary to look at in either Services or Task Scheduler
+      - look at HKLM\software\microsoft\windows\currentversion\[either run or run once]
       
