@@ -235,3 +235,22 @@ Day 7
              ControlPersist 10m
              ControlMaster auto
         ------------------------
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+Day 8
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+  - Privilege Escalation, Persistence & Covering Your Tracks - Windows
+    - DLL Search Order 
+      - HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\KnownDLLs
+      - Executables check the followings locations (in order):
+        - Directory the application was run from
+        - Directory specified in the C+ fuction GetSystemDirectory()
+        - The directory specified in the C+ function GetWindowsDirectory()
+        - The current directory
+    - Windows Integrity Mechanism
+      - Integrity Levels
+        - Unrtustred
+        - Low
+        - Medium
+        - high 
+        - system
+      
