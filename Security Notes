@@ -320,4 +320,10 @@ Day 9
           - find / -type f -perm /2000 -ls 2>/dev/null
           - above command searches for SGID bits
           - same as before - look through each discovered file on GTFOBins until finding one you can exploit
-          
+      - John the Ripper:
+        - sudo apt install john
+        - sudo cat /etc/shadow and grab the hashed passwords
+        - save the passwords in a text file on your ops-station
+        - john [password file you took from /etc/shadow] --wordlist=rockyou.txt
+        - john --show [file you cracked] will show cracked passwords from a file you already cracked
+        
