@@ -294,3 +294,30 @@ Day 8
         - 4720 - Account created
         - 4672 - Admin user logged on
         - 7045 - Service created
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+Day 9
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+  - Privilege Escalation, Persistence & Covering Your Tracks - Linux
+    - touch -r 3.txt 1.txt    # Reference
+    - gtfobins
+    - Demos:
+      - Initial Survey:
+        - Ip a
+        - whoami
+        - hostname
+        - cat /etc/passwd
+        - on Linux, Zeus is another name for root user
+        - sudo -l 
+      - Priv. Escalation:
+        - Using sudo:
+          - find a sudo command you can run
+          - go to GTFOBins and search for the command
+          - find the syntax you need to escalate and plug it into the terminal
+        - Finding SUID and SGID bits:
+          - run find / -type f -perm /4000 [SUID bit set] -ls 2>/dev/null [don't forget the bit bucket]
+          - the above command will search for SUID bits set on any file starting at the root of the file system
+          - after finding files/programs with the SUID bit set, look at EVERY SINGLE ONE on GTFOBins
+          - find / -type f -perm /2000 -ls 2>/dev/null
+          - above command searches for SGID bits
+          - same as before - look through each discovered file on GTFOBins until finding one you can exploit
+          
