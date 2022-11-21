@@ -83,4 +83,3 @@ Privilege Escalation:
     - to find SUID bits - run find / -type f -perm /4000 [SUID bit set] -ls 2>/dev/null [don't forget the bit bucket]
     - to find SGID bits - find / -type f -perm /2000 -ls 2>/dev/null 
     - finding both bits set (last resort) - find / -type f -perm /6000 -ls 2>/dev/null
-    - 
