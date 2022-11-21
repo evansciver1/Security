@@ -1,3 +1,17 @@
+Master Sockets:
+ - ssh -M (master) -S (slave) ~/.ssh/cm/[whatever name you want - likely the hostname of the target box] -o "ControlPersist=10m" [user]@[IP address]
+ - the above command makes the socket stay open if nothing is connected to it, even if you close the original window
+ - ssh -O [big O] forward [specifies port forwarding] -L [random high port]:[target IP]:[ssh port] -S [socket] ~/.ssh/cm/[specific socket] T1
+ - connecting to the local port is the same as normal - ssh [username]@[localhost/0.0.0.0] -p [RHP] 
+ - establishing a new tunnel uses the same syntax as before; it will still use the same Master Socket but take you to a different target
+ - ssh -M -S ~/.ssh/cm/[New Socket Name] -o "ControlPersist=10m" -p [target port] [username]@[localhost/0.0.0.0] 
+ - the above command sets up a new mastersocket on your second target to continue going through the network
+ - ssh -o "ControlPath=~/.ssh/cm/[new socket]" [placeholder character] will take you to the new target ip through the new socket
+ - scp -P [socket local RHP] [usn]@[localhost/0.0.0.0]:/file/destination/path /your/local/directory/and_file_name.txt
+ - scp -o "ControlPath=~/.ssh/cm/[Master Socket]" [placeholder]:/directory/you_want_to_grab_from/and_file.txt /your/local/home/directory.txt
+ - above command: scping using master socket options
+ - ssh -O [big O] cancel [specifies port forwarding] -L [random high port]:[target IP]:[ssh port] -S [socket] ~/.ssh/cm/[specific socket] T1       
+ - ssh -o "ControlPath=~/.ssh/cm/[socket]" -D 9050 [placeholder] - dynamic tunnel w/a socket
 Methodology:
   - Get initial IP
   - nmap the recieved IP
@@ -21,6 +35,8 @@ Web Exploitation:
   - nikto also enumerates an http page - nikto -h [IP]
   - when finished enumerating, go to firefox and put in the IP in the search bar
   - browse the website as normal before trying to enumerate anything
+  - getting to an http port multiple hops away: set up a local port forward on your opstation going through a master socket to the remote http port; 
+    open firefox and type "localhost:[local port]" in the search bar
   - if you see an upload page, and you can upload successfully, you can upload a webshell to do an:
     - SSH keygen:
       - 
@@ -33,7 +49,7 @@ Web Exploitation:
   - or -
     - Directory Traversal:
       - Directory traversal is done through running commands in an excecutable bar; specifically commands to change directories:
-        - EX: ../../../../../../etc/passwd - changes directory to /etc/passwd and shows  the contents
+        - EX: ../../../../../../etc/passwd - changes directory to /etc/passwd and shows the contents
   - if there's a vulnerable login page, you can try:
     - POST login method:
       - type john' OR 1='1 in both the username and password fields
@@ -45,4 +61,4 @@ Web Exploitation:
       - find your request in the request tab on the right
       - click raw and copy the request
       - put the raw request in the url, paste it, and enter
-   - 
+      
