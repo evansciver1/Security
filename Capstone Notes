@@ -70,6 +70,7 @@ Web Exploitation:
       - only work with the columns that are avaiable - if 1,2,5 are visible do table_schema,column_name,3,4,table_name (example)
       - DONT TRY TO GET TO THE BACK-END (SQL databases) THROUGH A LOGIN PAGE - ALL YOU SHOULD GET FROM A LOGIN PAGE ARE CREDS
       - THERE WON'T BE A DATABASE WITH MORE THAN 9 COLUMNS ON THE TEST
+      - POST METHOD TO FIND VERSION: Audi' UNION SELECT @@version,database(),3,name,size FROM session.Tires; #
   - or -
     - Command injection:
       - 
