@@ -71,4 +71,16 @@ Web Exploitation:
       - find your request in the request tab on the right
       - click raw and copy the request
       - put the raw request in the url, paste it, and enter
-      
+Privilege Escalation:
+  - Sudo method:
+    - find a command you can run as sudo - ex: find
+    - go on https://gtfobins.github.io/ to find methods to priv escalate using the command
+    - follow the steps to priv escalate
+  - Buffer overflow:
+    - if buffer overflow is needed, do which gdb - if buffer overflow is needed, it'll be there
+  - SUID/SGID bits:
+    - for all of these: for each file found, go on gtfobins and look through EACH FILE until you find the one you can escalate 
+    - to find SUID bits - run find / -type f -perm /4000 [SUID bit set] -ls 2>/dev/null [don't forget the bit bucket]
+    - to find SGID bits - find / -type f -perm /2000 -ls 2>/dev/null 
+    - finding both bits set (last resort) - find / -type f -perm /6000 -ls 2>/dev/null
+    - 
