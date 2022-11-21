@@ -1,2 +1,48 @@
+Methodology:
+  - Get initial IP
+  - nmap the recieved IP
+    - Basic recon:
+      - whoami
+      - ip a
+      - hostname
+      - /etc/hosts
+      - /etc/passwd
+      - ps -elf
+      - ss -ntlp
+      - for i in {1..254} ;do (ping -c 1 192.168.1.$i 2>/dev/null | grep "bytes from" &) ;done
+  - look at ports 22,80,2222,4444,4242,2424,8080,8888 (commonly used in the ctfd)
+  - if the port scan doesn't work, cast a wider net (1-10000)
+  - nc open ports - nc [IP addr.] [port]
+  - ON THE EXAM: if you recieve credentials, try using the unencoded ones first. If that doesn't work, try decoding in Base64 and ROT13. Whichever gives an actual word is the appropriate creds
 Web Exploitation:
-  - 
+  - http enum script; doesn't necessarily have to be in this order - proxychains nmap -Pn -T5 -sT -p 80 --script http-enum.nse <IP> 
+  - sql injection script; shows vulnerable parts of a webpage - proxychains nmap -Pn -T5 -sT -p 80 --script http-sql-injection.nse <IP>
+  - robots.txt scan script - proxychains nmap -Pn -T5 -sT -p 80 --script http-robots.txt.nse <IP>
+  - nikto also enumerates an http page - nikto -h [IP]
+  - when finished enumerating, go to firefox and put in the IP in the search bar
+  - browse the website as normal before trying to enumerate anything
+  - if you see an upload page, and you can upload successfully, you can upload a webshell to do an:
+    - SSH keygen:
+      - 
+  - if you find a single line command bar you can try:
+    - SQL injection:
+      - 
+  - or -
+    - Command injection:
+      -
+  - or -
+    - Directory Traversal:
+      - Directory traversal is done through running commands in an excecutable bar; specifically commands to change directories:
+        - EX: ../../../../../../etc/passwd - changes directory to /etc/passwd and shows  the contents
+  - if there's a vulnerable login page, you can try:
+    - POST login method:
+      - type john' OR 1='1 in both the username and password fields
+  - or -
+    - GET login method:
+      - open dev console while making a request
+      - hit enter on your request while the console is open
+      - if you get status 200 clock on the post request associated w/the status
+      - find your request in the request tab on the right
+      - click raw and copy the request
+      - put the raw request in the url, paste it, and enter
+   - 
