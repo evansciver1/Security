@@ -31,6 +31,7 @@ Methodology:
     Whichever gives an actual word is the appropriate creds. Attempt 2 logins per account/box - if you just can't log on IT CAN'T BE LOGGED ON TO. SOME
     BOXES CANT BE LOGGED ON TO. DONT WASTE TIME
   - IF SOMETHING IS A GATEWAY DEVICE IT WON'T RETURN ANY PINGS - DONT WASTE YOUR TIME WITH THEM
+  - xfreerdp /v:10.50.x.x /u:student /p:password /size:1920x1000 +clipboard
 Web Exploitation:
   - http enum script; doesn't necessarily have to be in this order - proxychains nmap -Pn -T5 -sT -p 80 --script http-enum.nse <IP> 
   - sql injection script; shows vulnerable parts of a webpage - proxychains nmap -Pn -T5 -sT -p 80 --script http-sql-injection.nse <IP>
