@@ -30,6 +30,7 @@ Methodology:
   - ON THE EXAM: if you recieve credentials, try using the unencoded ones first. If that doesn't work, try decoding in Base64 and ROT13. 
     Whichever gives an actual word is the appropriate creds. Attempt 2 logins per account/box - if you just can't log on IT CAN'T BE LOGGED ON TO. SOME
     BOXES CANT BE LOGGED ON TO. DONT WASTE TIME
+  - IF SOMETHING IS A GATEWAY DEVICE IT WON'T RETURN ANY PINGS - DONT WASTE YOUR TIME WITH THEM
 Web Exploitation:
   - http enum script; doesn't necessarily have to be in this order - proxychains nmap -Pn -T5 -sT -p 80 --script http-enum.nse <IP> 
   - sql injection script; shows vulnerable parts of a webpage - proxychains nmap -Pn -T5 -sT -p 80 --script http-sql-injection.nse <IP>
