@@ -13,6 +13,7 @@ Master Sockets:
  - ssh -O [big O] cancel [specifies port forwarding] -L [random high port]:[target IP]:[ssh port] -S [socket] ~/.ssh/cm/[specific socket] T1       
  - ssh -o "ControlPath=~/.ssh/cm/[socket]" -D 9050 [placeholder] - dynamic tunnel w/a socket
 Methodology:
+  - 10.50.43.72
   - Get initial IP
   - nmap the recieved IP
     - Basic recon:
