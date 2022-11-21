@@ -40,12 +40,19 @@ Web Exploitation:
   - if you see an upload page, and you can upload successfully, you can upload a webshell to do an:
     - SSH keygen:
       - 
-  - if you find a single line command bar you can try:
-    - SQL injection:
-      - 
+  - if you find a single line command bar or radio buttons you can try:
+    - SQL injection: 
+      - on a page showing tables you can type a GET request in the url
+      - click and submit one of the buttons and wait for the url to have a variable (ex: product=7) in it
+      - from there you can slowly go through each number from 1-x until you get to one that errors out
+      - find the amount of possible columns - [name].php?[variable]=[number] UNION SELECT [amount of tables you're looking for - start at 1]
+      - you can find which column is which when it shows your numbers in their respective columns - i.e. column 1 = 1 column 2 = 3 column 3 = 2
+      - to find the table schema type [name].php?[variable]=[number] UNION SELECT table_schema,column_name,table_name FROM information_schema.columns;# 
+        in the url
+      - ignore information schema, mysql, and performance schema - these are built-in databases: look for custom databases
   - or -
     - Command injection:
-      -
+      - 
   - or -
     - Directory Traversal:
       - Directory traversal is done through running commands in an excecutable bar; specifically commands to change directories:
